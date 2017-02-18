@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B4ECB8123461CEBB04157608 /* Pods_RssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */; };
+		FA161C6D1E58C9A300670DF9 /* RssTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */; };
+		FA161C711E58EE4700670DF9 /* RssFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA161C701E58EE4700670DF9 /* RssFeedManager.swift */; };
 		FA5EC5051E58C5FF00BD5355 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5EC5041E58C5FF00BD5355 /* AppDelegate.swift */; };
 		FA5EC50A1E58C5FF00BD5355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5EC5081E58C5FF00BD5355 /* Main.storyboard */; };
 		FA5EC50C1E58C5FF00BD5355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5EC50B1E58C5FF00BD5355 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 		ADD878F52FB45D6FE6C549EA /* Pods-RssReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RssReader/Pods-RssReader.release.xcconfig"; sourceTree = "<group>"; };
 		BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAEBFCAEFBD7250A5CBEF935 /* Pods-RssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssReader/Pods-RssReader.debug.xcconfig"; sourceTree = "<group>"; };
+		FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RssTableViewController.swift; sourceTree = "<group>"; };
+		FA161C701E58EE4700670DF9 /* RssFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RssFeedManager.swift; sourceTree = "<group>"; };
 		FA5EC5011E58C5FF00BD5355 /* RssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5EC5041E58C5FF00BD5355 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5EC5091E58C5FF00BD5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		FA5EC5031E58C5FF00BD5355 /* RssReader */ = {
 			isa = PBXGroup;
 			children = (
+				FA161C701E58EE4700670DF9 /* RssFeedManager.swift */,
+				FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */,
 				FA5EC5161E58C61400BD5355 /* Supporting files */,
 				FA5EC5081E58C5FF00BD5355 /* Main.storyboard */,
 			);
@@ -217,6 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA161C6D1E58C9A300670DF9 /* RssTableViewController.swift in Sources */,
+				FA161C711E58EE4700670DF9 /* RssFeedManager.swift in Sources */,
 				FA5EC5051E58C5FF00BD5355 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +391,7 @@
 				FA5EC5151E58C5FF00BD5355 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
