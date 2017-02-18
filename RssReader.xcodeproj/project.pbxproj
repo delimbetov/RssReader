@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4ECB8123461CEBB04157608 /* Pods_RssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */; };
 		FA5EC5051E58C5FF00BD5355 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5EC5041E58C5FF00BD5355 /* AppDelegate.swift */; };
 		FA5EC50A1E58C5FF00BD5355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5EC5081E58C5FF00BD5355 /* Main.storyboard */; };
 		FA5EC50C1E58C5FF00BD5355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5EC50B1E58C5FF00BD5355 /* Assets.xcassets */; };
@@ -14,6 +15,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ADD878F52FB45D6FE6C549EA /* Pods-RssReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RssReader/Pods-RssReader.release.xcconfig"; sourceTree = "<group>"; };
+		BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAEBFCAEFBD7250A5CBEF935 /* Pods-RssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssReader/Pods-RssReader.debug.xcconfig"; sourceTree = "<group>"; };
 		FA5EC5011E58C5FF00BD5355 /* RssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5EC5041E58C5FF00BD5355 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5EC5091E58C5FF00BD5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -27,17 +31,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4ECB8123461CEBB04157608 /* Pods_RssReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F0859CBDFCFCDAB81F56517 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAEBFCAEFBD7250A5CBEF935 /* Pods-RssReader.debug.xcconfig */,
+				ADD878F52FB45D6FE6C549EA /* Pods-RssReader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		838CD98C504213487B88A0CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA5EC4F81E58C5FF00BD5355 = {
 			isa = PBXGroup;
 			children = (
 				FA5EC5031E58C5FF00BD5355 /* RssReader */,
 				FA5EC5021E58C5FF00BD5355 /* Products */,
+				7F0859CBDFCFCDAB81F56517 /* Pods */,
+				838CD98C504213487B88A0CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,9 +100,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA5EC5131E58C5FF00BD5355 /* Build configuration list for PBXNativeTarget "RssReader" */;
 			buildPhases = (
+				7F7535BA8F5F6ED3317C8B86 /* [CP] Check Pods Manifest.lock */,
 				FA5EC4FD1E58C5FF00BD5355 /* Sources */,
 				FA5EC4FE1E58C5FF00BD5355 /* Frameworks */,
 				FA5EC4FF1E58C5FF00BD5355 /* Resources */,
+				CC2A9F2E369BDE3DD707FD09 /* [CP] Embed Pods Frameworks */,
+				497583C7EB07A5462BEC3623 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		497583C7EB07A5462BEC3623 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RssReader/Pods-RssReader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F7535BA8F5F6ED3317C8B86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC2A9F2E369BDE3DD707FD09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RssReader/Pods-RssReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA5EC4FD1E58C5FF00BD5355 /* Sources */ = {
@@ -263,6 +338,7 @@
 		};
 		FA5EC5141E58C5FF00BD5355 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAEBFCAEFBD7250A5CBEF935 /* Pods-RssReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48L483TLQC;
@@ -276,6 +352,7 @@
 		};
 		FA5EC5151E58C5FF00BD5355 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADD878F52FB45D6FE6C549EA /* Pods-RssReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48L483TLQC;
