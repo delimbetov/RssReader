@@ -31,6 +31,20 @@ class RssFeedManager {
         }
     }
     
+    func delete(rssFeed: RSSFeed) {
+        var index = 0
+        
+        for feed in feeds {
+            if rssFeed === feed {
+                print("rssFeed removed")
+                absoluteUrlOfRssFeedToTurnedOnStatus.remove(at: index)
+                return
+            }
+            
+            index += 1
+        }
+    }
+    
     func update() {
         var rssUrls = [URL]()
         

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B4ECB8123461CEBB04157608 /* Pods_RssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */; };
+		FA102B741E59BD68007DF7B0 /* FeedsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA102B731E59BD68007DF7B0 /* FeedsTableViewController.swift */; };
 		FA161C6D1E58C9A300670DF9 /* RssTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */; };
 		FA161C711E58EE4700670DF9 /* RssFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA161C701E58EE4700670DF9 /* RssFeedManager.swift */; };
 		FA5EC5051E58C5FF00BD5355 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5EC5041E58C5FF00BD5355 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 		ADD878F52FB45D6FE6C549EA /* Pods-RssReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RssReader/Pods-RssReader.release.xcconfig"; sourceTree = "<group>"; };
 		BD8E2E98EBBED98438604E1E /* Pods_RssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAEBFCAEFBD7250A5CBEF935 /* Pods-RssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssReader/Pods-RssReader.debug.xcconfig"; sourceTree = "<group>"; };
+		FA102B731E59BD68007DF7B0 /* FeedsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsTableViewController.swift; sourceTree = "<group>"; };
 		FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RssTableViewController.swift; sourceTree = "<group>"; };
 		FA161C701E58EE4700670DF9 /* RssFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RssFeedManager.swift; sourceTree = "<group>"; };
 		FA5EC5011E58C5FF00BD5355 /* RssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 			children = (
 				FA161C701E58EE4700670DF9 /* RssFeedManager.swift */,
 				FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */,
+				FA102B731E59BD68007DF7B0 /* FeedsTableViewController.swift */,
 				FA5EC5081E58C5FF00BD5355 /* Main.storyboard */,
 				FA5EC5161E58C61400BD5355 /* Supporting files */,
 			);
@@ -226,6 +229,7 @@
 				FA161C6D1E58C9A300670DF9 /* RssTableViewController.swift in Sources */,
 				FA161C711E58EE4700670DF9 /* RssFeedManager.swift in Sources */,
 				FA5EC5051E58C5FF00BD5355 /* AppDelegate.swift in Sources */,
+				FA102B741E59BD68007DF7B0 /* FeedsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +356,7 @@
 				DEVELOPMENT_TEAM = 48L483TLQC;
 				INFOPLIST_FILE = RssReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.RssReader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delimbetov.RssReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -366,7 +370,7 @@
 				DEVELOPMENT_TEAM = 48L483TLQC;
 				INFOPLIST_FILE = RssReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.RssReader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delimbetov.RssReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

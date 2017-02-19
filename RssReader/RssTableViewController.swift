@@ -15,7 +15,6 @@ class RssTableViewController: UITableViewController {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         NotificationCenter.default.addObserver(self, selector: #selector(onUpdate), name: NSNotification.Name(Notification.rssFeedsItemsUpdates), object: nil)
-        rssFeedManager.add(rssUrl: URL(string: "https://www.lenta.ru/rss")!)
         rssFeedManager.update()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
@@ -33,51 +32,89 @@ class RssTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.rssNewsCellReuseIdentifier, for: indexPath)
         let item = rssFeedManager.items[indexPath.row]
-        var detailString = ""
-        let content = NSMutableAttributedString(string: (item.title ?? "No title") + "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: Constant.cellTitleFontSize)])
+        var sourceString = ""
+        let content = NSMutableAttributedString(string: (item.title ?? "No title") + "\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: Constant.cellTitleFontSize)])
         
         if let source = rssFeedManager.itemToSourceRssTitle[item] {
-            detailString = "source: " + source
+            sourceString = "Source: " + source
         } else {
-            print("error - source shall be always available")
-            detailString = "Unknown source"
+            print("error - source shall always be available")
+            sourceString = "Unknown source"
         }
         
         if selectedIndexPath == indexPath, let itemDescription = item.description {
-            detailString += itemDescription
+            content.append(NSAttributedString(string: itemDescription.replacingOccurrences(of: "\n", with: "") + "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: Constant.cellDetailFontSize)]))
         }
         
-        content.append(NSAttributedString(string: detailString, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: Constant.cellDetailFontSize)]))
+        content.append(NSAttributedString(string: sourceString, attributes: [NSFontAttributeName: UIFont.italicSystemFont(ofSize: Constant.cellSourceFontSize)]))
+        
         cell.textLabel?.attributedText = content
         return cell
     }
     
     //MARK: UITableViewDelegate
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let item = rssFeedManager.items[indexPath.row]
+        
+        if let link = URL(string: item.link ?? " "), UIApplication.shared.canOpenURL(link) {
+            UIApplication.shared.open(link)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        tableView.reloadRows(at: [selectedIndexPath!], with: .bottom)
+        var indexPathsToReload = [indexPath]
+        
+        if selectedIndexPath != nil {
+            indexPathsToReload.append(selectedIndexPath!)
+        }
+        
+        //deselect if clicked again
+        if selectedIndexPath == indexPath {
+            selectedIndexPath = nil
+        } else {
+            selectedIndexPath = indexPath
+            indexPathsToReload.append(selectedIndexPath!)
+        }
+        
+        tableView.reloadRows(at: indexPathsToReload, with: .automatic)
     }
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == Constant.segueIdentifierFeeds, let destination = segue.destination as? FeedsTableViewController {
+            feedsTableViewController = destination
+            destination.feeds = rssFeedManager.feeds
+            destination.addUrl = { [weak weakSelf = self](url) in
+                weakSelf?.rssFeedManager.add(rssUrl: url)
+            }
+            destination.deleteFeed = { [weak weakSelf = self](feed) in
+                weakSelf?.rssFeedManager.delete(rssFeed: feed)
+            }
+        }
     }
     
     //MARK: private
     private struct Constant {
-        static let rssNewsCellReuseIdentifier = "Rss news"
-        static let cellTitleFontSize = CGFloat(16.0)
         static let cellDetailFontSize = CGFloat(14.0)
+        static let cellSourceFontSize = CGFloat(14.0)
+        static let cellTitleFontSize = CGFloat(16.0)
+        static let segueIdentifierFeeds = "Feeds"
+        static let rssNewsCellReuseIdentifier = "Rss news"
     }
     
     @objc private func onUpdate() {
         print("Notification caught")
         tableView.reloadData()
+        
+        if feedsTableViewController != nil {
+            print("Updating feeds")
+            feedsTableViewController!.feeds = rssFeedManager.feeds
+        }
     }
     
     //MARK: private data
+    private weak var feedsTableViewController: FeedsTableViewController? = nil
     private let rssFeedManager = RssFeedManager()
     private var selectedIndexPath: IndexPath? = nil
 }
