@@ -17,6 +17,7 @@ class RssFeedManager {
     
     internal private(set) var feeds = [RSSFeed]()
     internal private(set) var items = [RSSFeedItem]()
+    internal private(set) var itemToSourceRssTitle = [RSSFeedItem: String]()
     
     //shall be called on main thread
     func add(rssUrl: URL) {
@@ -50,6 +51,7 @@ class RssFeedManager {
         DispatchQueue.global(qos: .default).async {
             var rssFeeds = [RSSFeed]()
             var rssItems = [RSSFeedItem]()
+            var rssItemToSourceRssTitle = [RSSFeedItem: String]()
             
             for url in rssUrls {
                 FeedParser(URL: url)?.parse({ (result) in
@@ -62,6 +64,10 @@ class RssFeedManager {
                     
                     if let feedItems = feed.items {
                         rssItems.append(contentsOf: feedItems)
+                        
+                        for feedItem in feedItems {
+                            rssItemToSourceRssTitle[feedItem] = feed.title ?? "none"
+                        }
                     }
                 })
             }
@@ -74,6 +80,7 @@ class RssFeedManager {
             DispatchQueue.main.async { [weak weakSelf = self] in
                 weakSelf?.feeds = rssFeeds
                 weakSelf?.items = rssItems
+                weakSelf?.itemToSourceRssTitle = rssItemToSourceRssTitle
                 print("update ends")
                 weakSelf?.updating = false
             }
@@ -112,12 +119,12 @@ class RssFeedManager {
 }
 
 //to use in dictionary
-extension RSSFeed: Hashable {
+extension RSSFeedItem: Hashable {
     public var hashValue: Int {
-        return (title?.hashValue ?? 0) ^ (link?.hashValue ?? 0)
+        return (title?.hashValue ?? 0) ^ (link?.hashValue ?? 0) ^ (description?.hashValue ?? 0)
     }
     
-    public static func ==(lhs: RSSFeed, rhs: RSSFeed) -> Bool {
-        return lhs.title == rhs.title && lhs.link == rhs.link
+    public static func ==(lhs: RSSFeedItem, rhs: RSSFeedItem) -> Bool {
+        return lhs.title == rhs.title && lhs.link == rhs.link && lhs.description == rhs.description
     }
 }

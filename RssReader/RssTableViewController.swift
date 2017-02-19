@@ -17,6 +17,8 @@ class RssTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onUpdate), name: NSNotification.Name(Notification.rssFeedsItemsUpdates), object: nil)
         rssFeedManager.add(rssUrl: URL(string: "https://www.lenta.ru/rss")!)
         rssFeedManager.update()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     // MARK: - Table view data source
@@ -28,13 +30,32 @@ class RssTableViewController: UITableViewController {
         return rssFeedManager.items.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.rssNewsCellReuseIdentifier, for: indexPath)
+        let item = rssFeedManager.items[indexPath.row]
+        var detailString = ""
+        let content = NSMutableAttributedString(string: (item.title ?? "No title") + "\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: Constant.cellTitleFontSize)])
         
-        cell.textLabel?.text = rssFeedManager.items[indexPath.row].title
+        if let source = rssFeedManager.itemToSourceRssTitle[item] {
+            detailString = "source: " + source
+        } else {
+            print("error - source shall be always available")
+            detailString = "Unknown source"
+        }
         
+        if selectedIndexPath == indexPath, let itemDescription = item.description {
+            detailString += itemDescription
+        }
+        
+        content.append(NSAttributedString(string: detailString, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: Constant.cellDetailFontSize)]))
+        cell.textLabel?.attributedText = content
         return cell
+    }
+    
+    //MARK: UITableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        tableView.reloadRows(at: [selectedIndexPath!], with: .bottom)
     }
     
     // MARK: - Navigation
@@ -47,6 +68,8 @@ class RssTableViewController: UITableViewController {
     //MARK: private
     private struct Constant {
         static let rssNewsCellReuseIdentifier = "Rss news"
+        static let cellTitleFontSize = CGFloat(16.0)
+        static let cellDetailFontSize = CGFloat(14.0)
     }
     
     @objc private func onUpdate() {
@@ -54,6 +77,7 @@ class RssTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    //MARK: model
+    //MARK: private data
     private let rssFeedManager = RssFeedManager()
+    private var selectedIndexPath: IndexPath? = nil
 }
