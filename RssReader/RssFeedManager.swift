@@ -20,23 +20,17 @@ class RssFeedManager {
     
     //shall be called on main thread
     func add(rssUrl: URL) {
-        print("new rss url: " + rssUrl.absoluteString)
-        absoluteUrlOfRssFeedToTurnedOnStatus.append(rssUrl.absoluteString)
-    }
-    
-    init() {
-        if let savedPropertyList = userDefaults.array(forKey: Constant.propertyListKey) as? PropertyList {
-            absoluteUrlOfRssFeedToTurnedOnStatus = savedPropertyList
+        let url = rssUrl.absoluteString
+        
+        if absoluteUrlOfRssFeedToTurnedOnStatus.contains(url) == false {
+            print("new rss url: " + url)
+            absoluteUrlOfRssFeedToTurnedOnStatus.append(url)
+        } else {
+            print("url=\(url) already presented")
         }
     }
     
-    //MARK: private
-    private struct Constant {
-        static let propertyListKey = "Url to turned on status array"
-    }
-    private typealias PropertyList = [String]
-    
-    private func update() {
+    func update() {
         var rssUrls = [URL]()
         
         if updating {
@@ -85,6 +79,19 @@ class RssFeedManager {
             }
         }
     }
+    
+    //MARK: initializers
+    init() {
+        if let savedPropertyList = userDefaults.array(forKey: Constant.propertyListKey) as? PropertyList {
+            absoluteUrlOfRssFeedToTurnedOnStatus = savedPropertyList
+        }
+    }
+    
+    //MARK: private
+    private struct Constant {
+        static let propertyListKey = "Url to turned on status array"
+    }
+    private typealias PropertyList = [String]
     
     //MARK: private data
     private var absoluteUrlOfRssFeedToTurnedOnStatus = PropertyList() {

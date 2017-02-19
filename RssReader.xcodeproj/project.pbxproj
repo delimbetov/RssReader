@@ -82,8 +82,8 @@
 			children = (
 				FA161C701E58EE4700670DF9 /* RssFeedManager.swift */,
 				FA161C6C1E58C9A300670DF9 /* RssTableViewController.swift */,
-				FA5EC5161E58C61400BD5355 /* Supporting files */,
 				FA5EC5081E58C5FF00BD5355 /* Main.storyboard */,
+				FA5EC5161E58C61400BD5355 /* Supporting files */,
 			);
 			path = RssReader;
 			sourceTree = "<group>";

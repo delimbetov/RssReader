@@ -14,6 +14,9 @@ class RssTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
+        NotificationCenter.default.addObserver(self, selector: #selector(onUpdate), name: NSNotification.Name(Notification.rssFeedsItemsUpdates), object: nil)
+        rssFeedManager.add(rssUrl: URL(string: "https://www.lenta.ru/rss")!)
+        rssFeedManager.update()
     }
     
     // MARK: - Table view data source
@@ -29,7 +32,7 @@ class RssTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.rssNewsCellReuseIdentifier, for: indexPath)
         
-        // Configure the cell...
+        cell.textLabel?.text = rssFeedManager.items[indexPath.row].title
         
         return cell
     }
@@ -44,6 +47,11 @@ class RssTableViewController: UITableViewController {
     //MARK: private
     private struct Constant {
         static let rssNewsCellReuseIdentifier = "Rss news"
+    }
+    
+    @objc private func onUpdate() {
+        print("Notification caught")
+        tableView.reloadData()
     }
     
     //MARK: model
